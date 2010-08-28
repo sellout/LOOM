@@ -39,7 +39,8 @@
                                      (:file "files")
                                      (:file "streams")
 
-                                     (:file "system-construction")))))
+                                     (:file "system-construction")
+                                     (:file "package")))))
 
 ;;; want to define this in such a way that it's easy to build the
 ;;; later pieces on the earlier
