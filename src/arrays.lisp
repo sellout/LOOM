@@ -31,7 +31,8 @@
            #:vector-pop
            #:vector-push #:vector-push-extend
            #:vectorp
-           #:bit #:sbit
+           ;; #:bit ;; FIXME: BIT is also exported by loom.numbers, so this conflicts.
+           #:sbit
            #:bit-and #:bit-andc1 #:bit-andc2 #:biteqv #:bit-ior #:bit-nand #:bit-nor #:bit-not #:bit-orc1 #:bit-orc2 #:bit-xor
            #:bit-vector-p
            #:simple-bit-vector-p))

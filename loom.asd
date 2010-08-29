@@ -13,15 +13,17 @@
   :licence "LLGPL"
   :components ((:module "src"
                         :components ((:file "package")
-                                     (:file "utilities")
-                                     (:file "evaluation-and-compilation")
+                                     (:file "utilities" :depends-on ("package"))
+                                     (:file "evaluation-and-compilation"
+                                            :depends-on ("utilities"))
                                      
-                                     (:file "data-and-control-flow")
-                                     (:file "iteration")
-                                     (:file "objects")
-                                     (:file "structures")
+                                     (:file "data-and-control-flow"
+                                            :depends-on ("utilities"))
+                                     (:file "iteration" :depends-on ("utilities"))
+                                     (:file "objects" :depends-on ("utilities"))
+                                     (:file "structures" :depends-on ("utilities"))
 
-                                     (:file "symbols")
+                                     (:file "symbols" :depends-on ("utilities"))
 
                                      (:file "numbers"
                                             :depends-on ("utilities"
@@ -30,17 +32,18 @@
                                                          "objects"
                                                          "conses"
                                                          "sequences"))
-                                     (:file "characters")
-                                     (:file "conses")
-                                     (:file "arrays")
-                                     (:file "strings")
-                                     (:file "sequences")
-                                     (:file "hash-tables")
-                                     (:file "filenames")
-                                     (:file "files")
-                                     (:file "streams")
+                                     (:file "characters" :depends-on ("utilities"))
+                                     (:file "conses" :depends-on ("utilities"))
+                                     (:file "arrays" :depends-on ("utilities"))
+                                     (:file "strings" :depends-on ("utilities"))
+                                     (:file "sequences" :depends-on ("utilities"))
+                                     (:file "hash-tables" :depends-on ("utilities"))
+                                     (:file "filenames" :depends-on ("utilities"))
+                                     (:file "files" :depends-on ("utilities"))
+                                     (:file "streams" :depends-on ("utilities"))
 
-                                     (:file "system-construction")))))
+                                     (:file "system-construction"
+                                            :depends-on ("utilities"))))))
 
 ;;; want to define this in such a way that it's easy to build the
 ;;; later pieces on the earlier

@@ -1,6 +1,7 @@
 (defpackage loom.internals
   (:use #:cl)
-  (:export #:defpackage #:make-generic #:define-generic-nary))
+  (:export #:defpackage #:make-generic #:define-generic-nary)
+  (:shadow #:defpackage))
 
 (in-package #:loom.internals)
 
@@ -8,18 +9,18 @@
           (name (use &rest uses) (export &rest exports) &rest options)
   (declare (ignore use export))
   `(progn
-     (defpackage ,(intern (concatenate 'string "CL." (symbol-name name)))
+     (cl:defpackage ,(intern (concatenate 'string "CL." (symbol-name name)))
        (:use #:cl)
        (:export ,@exports))
-     (defpackage ,(intern (concatenate 'string "LOOM." (symbol-name name)))
+     (cl:defpackage ,(intern (concatenate 'string "LOOM." (symbol-name name)))
        (:nicknames ,name)
        (:use ,@uses)
        (:export ,@exports)
        ,@options)
      (use-package ',(intern (concatenate 'string "LOOM." (symbol-name name)))
                   :loom)
-     (export ',(mapcar (lambda (sym) (find-symbol (symbol-name sym) :loom))
-                       exports)
+     (export (mapcar (lambda (sym) (find-symbol (symbol-name sym) :loom))
+                     ',exports)
              :loom)))
 
 (defmacro make-generic (fn arguments)
