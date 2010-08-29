@@ -1,5 +1,4 @@
-(defpackage loom.iteration
-  (:nicknames #:iteration)
+(loom.internals:defpackage iteration
   (:use #:cl)
   (:export #:do #:do*
            #:dotimes

@@ -1,5 +1,4 @@
-(defpackage loom.objects
-  (:nicknames #:objects)
+(loom.internals:defpackage objects
   (:use #:cl)
   (:export #:function-keywords
            #:ensure-generic-function

@@ -1,5 +1,4 @@
-(defpackage loom.numbers
-  (:nicknames #:numbers)
+(loom.internals:defpackage numbers
   (:use #:evaluation-and-compilation #:data-and-control-flow
         #:objects #:conses #:sequences #:loom.internals)
   (:export #:number
@@ -40,7 +39,7 @@
            #:conjugate
            #:sqrt))
 
-(in-package #:loom.numbers)
+(in-package #:numbers)
 
 ;;; Comparison
 

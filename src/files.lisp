@@ -1,5 +1,4 @@
-(defpackage loom.files
-  (:nicknames #:files)
+(loom.internals:defpackage files
   (:use #:cl)
   (:export #:directory
            #:probe-file

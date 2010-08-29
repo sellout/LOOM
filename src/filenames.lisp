@@ -1,5 +1,4 @@
-(defpackage loom.filenames
-  (:nicknames #:filenames)
+(loom.internals:defpackage filenames
   (:use #:cl)
   (:export #:pathname
            #:logical-pathname

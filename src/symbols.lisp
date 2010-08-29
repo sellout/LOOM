@@ -1,5 +1,4 @@
-(defpackage loom.symbols
-  (:nicknames #:symbols)
+(loom.internals:defpackage symbols
   (:use #:cl)
   (:export #:symbol
            #:keyword

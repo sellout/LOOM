@@ -1,5 +1,4 @@
-(defpackage loom.system-construction
-  (:nicknames #:system-construction)
+(loom.internals:defpackage system-construction
   (:use #:cl)
   (:export #:compile-file
            #:compile-file-pathname

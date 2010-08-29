@@ -1,5 +1,4 @@
-(defpackage loom.streams
-  (:nicknames #:streams)
+(loom.internals:defpackage streams
   (:use #:cl)
   (:export #:stream
            #:broadcast-stream

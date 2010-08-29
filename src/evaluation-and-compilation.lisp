@@ -1,5 +1,4 @@
-(defpackage loom.evaluation-and-compilation
-  (:nicknames #:evaluation-and-compilation)
+(loom.internals:defpackage evaluation-and-compilation
   (:use #:cl)
   (:export #:lambda
            #:compile

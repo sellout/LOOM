@@ -1,5 +1,4 @@
-(defpackage loom.strings
-  (:nicknames #:strings)
+(loom.internals:defpackage strings
   (:use #:cl)
   (:export #:string
            #:base-string

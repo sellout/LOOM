@@ -1,5 +1,4 @@
-(defpackage loom.conses
-  (:nicknames #:conses)
+(loom.internals:defpackage conses
   (:use #:cl)
   (:export #:list
            #:null

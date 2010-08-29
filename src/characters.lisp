@@ -1,5 +1,4 @@
-(defpackage loom.characters
-  (:nicknames #:characters)
+(loom.internals:defpackage characters
   (:use #:cl)
   (:export #:character
            #:base-char

@@ -1,5 +1,4 @@
-(defpackage loom.hash-tables
-  (:nicknames #:hash-tables)
+(loom.internals:defpackage hash-tables
   (:use #:cl)
   (:export #:hash-table
            #:make-hash-table

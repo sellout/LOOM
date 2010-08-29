@@ -1,5 +1,4 @@
-(defpackage loom.data-and-control-flow
-  (:nicknames #:data-and-control-flow)
+(loom.internals:defpackage data-and-control-flow
   (:use #:cl)
   (:export #:apply
            #:defun #:fdefinition #:fboundp #:fmakunbound

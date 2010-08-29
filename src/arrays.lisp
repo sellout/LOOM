@@ -1,5 +1,4 @@
-(defpackage loom.arrays
-  (:nicknames #:arrays)
+(loom.internals:defpackage arrays
   (:use #:cl)
   (:export #:array
            #:simple-array

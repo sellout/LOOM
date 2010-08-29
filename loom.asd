@@ -12,7 +12,8 @@
   :author "Greg Pfeil <greg@technomadic.org>"
   :licence "LLGPL"
   :components ((:module "src"
-                        :components ((:file "utilities")
+                        :components ((:file "package")
+                                     (:file "utilities")
                                      (:file "evaluation-and-compilation")
                                      
                                      (:file "data-and-control-flow")
@@ -39,8 +40,7 @@
                                      (:file "files")
                                      (:file "streams")
 
-                                     (:file "system-construction")
-                                     (:file "package")))))
+                                     (:file "system-construction")))))
 
 ;;; want to define this in such a way that it's easy to build the
 ;;; later pieces on the earlier

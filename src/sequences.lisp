@@ -1,5 +1,4 @@
-(defpackage loom.sequences
-  (:nicknames #:sequences)
+(loom.internals:defpackage sequences
   (:use #:cl)
   (:export #:sequence
            #:copy-seq
