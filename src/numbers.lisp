@@ -24,25 +24,68 @@
            #:asin #:acos #:atan
            #:pi
            #:sinh #:cosh #:tanh #:asinh #:acosh #:atanh
-           #:* #:+ #:- #:/
+           #:*
+           #:+
+           #:-
+           #:/
            #:1+ #:1-
            #:abs
            #:evenp #:oddp
            #:exp #:expt
            #:gcd
+           #:incf #:decf
            #:lcm
            #:log
            #:mod #:rem
            #:signum
            #:sqrt #:isqrt
+           #:random-state
+           #:make-random-state
+           #:random
+           #:random-state-p
+           #:*random-state*
+           #:numberp
            #:cis
+           #:complexp
            #:conjugate
-           #:sqrt)
+           #:phase
+           #:realpart #:imagpart
+           #:upgraded-complex-part-type
+           #:realp
+           #:numerator #:denominator
+           #:rational #:rationalize
+           #:rationalp
+           #:ash
+           #:integer-length
+           #:integer-p
+           #:parse-integer
+           #:boole
+           #:boole-1 #:boole-2 #:boole-and #:boole-andc1 #:boole-andc2
+           #:boole-c1 #:boole-c2 #:boole-clr #:boole-eqv #:boole-ior
+           #:boole-nand #:boole-nor #:boole-orc1 #:boole-orc2 #:boole-set #:boole-xor
+           #:logand #:logandc1 #:logandc2 #:logeqv #:logior #:lognand #:lognor #:lognot
+           #:logorc1 #:logorc2 :logxor)
   (:import-from #:cl
                 #:number
                 #:complex
                 #:real
-                #:float))
+                #:float
+                #:short-float #:single-float #:double-float #:long-float
+                #:rational
+                #:ratio
+                #:integer
+                #:signed-byte
+                #:unsigned-byte
+                #:mod
+                #:bit
+                #:fixnum
+                #:bignum
+                #:incf #:decf
+                #:random-state
+                #:boole-1 #:boole-2 #:boole-and #:boole-andc1 #:boole-andc2
+                #:boole-c1 #:boole-c2 #:boole-clr #:boole-eqv #:boole-ior
+                #:boole-nand #:boole-nor #:boole-orc1 #:boole-orc2 #:boole-set
+                #:boole-xor))
 
 (in-package #:numbers)
 
@@ -135,3 +178,8 @@
 (make-generic sqrt (value))
 
 (make-generic conjugate (number))
+
+(make-generic phase (number))
+
+(make-generic realpart (number))
+(make-generic imagpart (number))
