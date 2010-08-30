@@ -37,7 +37,12 @@
            #:sqrt #:isqrt
            #:cis
            #:conjugate
-           #:sqrt))
+           #:sqrt)
+  (:import-from #:cl
+                #:number
+                #:complex
+                #:real
+                #:float))
 
 (in-package #:numbers)
 
