@@ -22,7 +22,7 @@
                                      (:file "iteration" :depends-on ("utilities"))
                                      (:file "objects" :depends-on ("utilities"))
                                      (:file "structures" :depends-on ("utilities"))
-
+                                     (:file "conditions" :depends-on ("utilities"))
                                      (:file "symbols" :depends-on ("utilities"))
 
                                      (:file "numbers"
@@ -41,7 +41,7 @@
                                      (:file "filenames" :depends-on ("utilities"))
                                      (:file "files" :depends-on ("utilities"))
                                      (:file "streams" :depends-on ("utilities"))
-
+                                     (:file "printer" :depends-on ("utilities"))
                                      (:file "reader" :depends-on ("utilities"))
 
                                      (:file "system-construction"
