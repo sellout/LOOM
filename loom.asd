@@ -42,6 +42,8 @@
                                      (:file "files" :depends-on ("utilities"))
                                      (:file "streams" :depends-on ("utilities"))
 
+                                     (:file "reader" :depends-on ("utilities"))
+
                                      (:file "system-construction"
                                             :depends-on ("utilities"))))))
 
