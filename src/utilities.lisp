@@ -35,9 +35,11 @@
                nil)))
          (add-&rest (lambda-list)
            (let ((splice-point (position '&key lambda-list)))
-             (append (subseq lambda-list 0 splice-point)
-                     (list '&rest 'loom-keys) ; wanted to gensym this, but …
-                     (subseq lambda-list splice-point))))
+             (if splice-point
+               (append (subseq lambda-list 0 splice-point)
+                       (list '&rest 'loom-keys) ; wanted to gensym this, but …
+                       (subseq lambda-list splice-point))
+               lambda-list)))
          (remove-lambda-list-keywords (lambda-list)
            (remove '&optional
                    (remove '&rest
