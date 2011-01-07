@@ -24,7 +24,7 @@
                                      (:file "structures" :depends-on ("utilities"))
                                      (:file "conditions" :depends-on ("utilities"))
                                      (:file "symbols" :depends-on ("utilities"))
-
+                                     (:file "packages" :depends-on ("utilities"))
                                      (:file "numbers"
                                             :depends-on ("utilities"
                                                          "evaluation-and-compilation"
@@ -43,8 +43,9 @@
                                      (:file "streams" :depends-on ("utilities"))
                                      (:file "printer" :depends-on ("utilities"))
                                      (:file "reader" :depends-on ("utilities"))
-
                                      (:file "system-construction"
+                                            :depends-on ("utilities"))
+                                     (:file "environment"
                                             :depends-on ("utilities"))))))
 
 ;;; want to define this in such a way that it's easy to build the
