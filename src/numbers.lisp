@@ -65,6 +65,12 @@
            #:boole-nand #:boole-nor #:boole-orc1 #:boole-orc2 #:boole-set #:boole-xor
            #:logand #:logandc1 #:logandc2 #:logeqv #:logior #:lognand #:lognor #:lognot
            #:logorc1 #:logorc2 :logxor)
+  (:export #:binary-= #:binary-< #:binary-<=
+           #:binary-*
+           #:binary-+
+           #:unary-- #:binary--
+           #:unary-/ #:binary-/
+           #:binary-gcd)
   (:import-from #:cl
                 #:number
                 #:complex
