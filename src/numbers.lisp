@@ -70,7 +70,8 @@
            #:binary-+
            #:unary-- #:binary--
            #:unary-/ #:binary-/
-           #:binary-gcd)
+           #:binary-max #:binary-min
+           #:binary-gcd #:binary-lcm)
   (:import-from #:cl
                 #:number
                 #:complex
@@ -113,6 +114,9 @@
 
 (define-generic-nary <= (left right))
 
+(defmethod binary-<= (left right)
+  (not (binary-< right left)))
+
 (defun >= (&rest numbers)
   (apply #'<= (reverse numbers)))
 
@@ -126,7 +130,7 @@
 (make-generic tan (radians))
 (make-generic asin (number))
 (make-generic acos (number))
-;; (make-generic atan (number))
+(make-generic atan (number))
 (make-generic sinh (number))
 (make-generic cosh (number))
 (make-generic tanh (number))
@@ -181,11 +185,23 @@
 
 (define-generic-nary gcd (left right integers))
 
-(make-generic sqrt (value))
+(define-generic-nary lcm (left right integers))
+
+(make-generic log (number &optional base))
+
+(make-generic mod (number divisor))
+(make-generic rem (number divisor))
+
+(make-generic sqrt (number))
+(make-generic isqrt (natural))
 
 (make-generic conjugate (number))
 
 (make-generic phase (number))
+
+(make-generic numberp (object))
+
+(make-generic cis (radians))
 
 (make-generic realpart (number))
 (make-generic imagpart (number))
