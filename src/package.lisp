@@ -7,7 +7,7 @@
 
 (defpackage loom.utilities
   (:documentation "Some additional tools that make LOOM easier to use.")
-  (:use #:loom)
+  (:use #:cl)
   (:export #:use-with-cl))
 
 (in-package #:loom.utilities)
