@@ -83,7 +83,6 @@
                 #:integer
                 #:signed-byte
                 #:unsigned-byte
-                #:mod
                 #:bit
                 #:fixnum
                 #:bignum
