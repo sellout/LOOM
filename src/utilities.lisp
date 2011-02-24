@@ -23,7 +23,7 @@
                      ',exports)
              :loom)))
 
-(defmacro make-generic (fn arguments)
+(defmacro make-generic (fn arguments &rest options-and-methods)
   "Converts an existing non-generic function with the given name and arguments
    into a generic function, with the original behavior in a non-specialized
    method."
@@ -49,21 +49,22 @@
        (:documentation ,(or (documentation (intern (symbol-name fn) :cl)
                                            'function)
                             ""))
-       ,(cond ((find '&rest arguments)
-               `(:method ,arguments
-                  (declare (ignore ,@(collect-keys arguments)))
-                  (apply #',(intern (symbol-name fn) :cl)
-                         ,@(remove-lambda-list-keywords arguments))))
+       ,@(cond (options-and-methods `,options-and-methods)
+              ((find '&rest arguments)
+               `((:method ,arguments
+                   (declare (ignore ,@(collect-keys arguments)))
+                   (apply #',(intern (symbol-name fn) :cl)
+                          ,@(remove-lambda-list-keywords arguments)))))
               ((find '&key arguments)
                (let ((new-args (add-&rest arguments)))
-                 `(:method ,new-args
-                    (declare (ignore ,@(collect-keys new-args)))
-                    (apply #',(intern (symbol-name fn) :cl)
-                           ,@(remove-lambda-list-keywords new-args)))))
+                 `((:method ,new-args
+                     (declare (ignore ,@(collect-keys new-args)))
+                     (apply #',(intern (symbol-name fn) :cl)
+                            ,@(remove-lambda-list-keywords new-args))))))
               (t
-               `(:method ,arguments
-                  (,(intern (symbol-name fn) :cl)
-                   ,@(remove-lambda-list-keywords arguments))))))))
+               `((:method ,arguments
+                   (,(intern (symbol-name fn) :cl)
+                     ,@(remove-lambda-list-keywords arguments)))))))))
 
 (defmacro define-generic-nary (fn (left right &optional collective) &body body)
   "Takes an nary function and reframes it as a reduction on a binary generic
