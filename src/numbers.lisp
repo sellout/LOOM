@@ -122,6 +122,17 @@
 (define-generic-nary max (left right reals))
 (define-generic-nary min (left right reals))
 
+;;; Rounding
+
+(make-generic floor (number &optional divisor))
+(make-generic ffloor (number &optional divisor))
+(make-generic ceiling (number &optional divisor))
+(make-generic fceiling (number &optional divisor))
+(make-generic truncate (number &optional divisor))
+(make-generic ftruncate (number &optional divisor))
+(make-generic round (number &optional divisor))
+(make-generic fround (number &optional divisor))
+
 ;;; Trigonometry
 
 (make-generic sin (radians))
