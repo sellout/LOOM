@@ -5,6 +5,11 @@
                    want – IE, it gives you LOO without the M.")
   (:use))
 
+(defpackage loom-user
+  (:documentation "This is the parallel to CL-USER, the package you should keep
+                   your REPL in if you want to play with LOOM.")
+  (:use #:ccl #:loom))
+
 (defpackage loom.utilities
   (:documentation "Some additional tools that make LOOM easier to use.")
   (:use #:cl)
