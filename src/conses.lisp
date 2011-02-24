@@ -1,5 +1,5 @@
 (loom.internals:defpackage conses
-  (:use #:loom.internals
+  (:use #:loom.internals #:loom.sequences
         #:cl.data-and-control-flow #:cl.objects)
   (:export #:list
            #:null
@@ -55,11 +55,11 @@
            #:union #:nunion)
   (:import-from #:cl
                 #:list #:null #:cons #:atom #:list* #:push #:pop
-                #:nconc #:append #:revappend #:nreconc
+                #:nconc #:append
                 #:mapc #:mapcar #:mapcan #:mapl #:maplist #:mapcon
                 #:remf #:pushnew))
 
-(in-package #:conses)
+(cl:in-package #:conses)
 
 ;; FIXME: can't shadow the function without shadowing the class
 ;; (make-generic cons (object-1 object-2))
@@ -138,14 +138,30 @@
 (make-generic copy-tree (tree))
 
 (make-generic sublis (alist tree &key key test test-not))
-(make-generic nsublis (alist tree &key key test test-not))
+(make-generic nsublis (alist tree &key key test test-not)
+  (:method (alist tree &rest args)
+    (apply #'sublis alist tree args))
+  (:method ((alist list) (tree list) &rest args)
+    (apply #'cl:nsublis alist tree args)))
 
 (make-generic subst (new old tree &key key test test-not))
 (make-generic subst-if (new predicate tree &key key))
 (make-generic subst-if-not (new predicate tree &key key))
-(make-generic nsubst (new old tree &key key test test-not))
-(make-generic nsubst-if (new predicate tree &key key))
-(make-generic nsubst-if-not (new predicate tree &key key))
+(make-generic nsubst (new old tree &key key test test-not)
+  (:method (new old tree &rest args)
+    (apply #'subst new old tree args))
+  (:method (new old (tree list) &rest args)
+    (apply #'cl:nsubst new old tree args)))
+(make-generic nsubst-if (new predicate tree &key key)
+  (:method (new predicate tree &rest args)
+    (apply #'subst-if new predicate tree args))
+  (:method (new predicate (tree list) &rest args)
+    (apply #'cl:nsubst-if new predicate tree args)))
+(make-generic nsubst-if-not (new predicate tree &key key)
+  (:method (new predicate tree &rest args)
+    (apply #'subst-if-not new predicate tree args))
+  (:method (new predicate (tree list) &rest args)
+    (apply #'cl:nsubst-if-not new predicate tree args)))
 
 (make-generic tree-equal (tree-1 tree-2 &key test test-not))
 
@@ -188,8 +204,23 @@
 ;; FIXME: can't shadow the function without shadowing the class
 ;; (make-generic null (object))
 
+(make-generic revappend (list tail)
+  (:method (list tail)
+    (nconc (reverse list) tail))
+  (:method ((list list) tail)
+    (cl:revappend list tail)))
+(make-generic nreconc (list tail)
+  (:method (list tail)
+    (nconc (nreverse list) tail))
+  (:method ((list list) tail)
+    (cl:nreconc list tail)))
+
 (make-generic butlast (list &optional n))
-(make-generic nbutlast (list &optional n))
+(make-generic nbutlast (list &optional n)
+  (:method (list &optional (n 1))
+    (apply #'butlast list n))
+  (:method ((list list) &optional (n 1))
+    (apply #'cl:nbutlast list n)))
 
 (make-generic last (list &optional n))
 
@@ -225,17 +256,40 @@
 ;; (make-generic (setf getf) (new-value plist indicator &optional default))
 
 (make-generic intersection (list-1 list-2 &key key test test-not))
-(make-generic nintersection (list-1 list-2 &key key test test-not))
+(make-generic nintersection (list-1 list-2 &key key test test-not)
+  (:method (list-1 list-2 &rest args)
+    (apply #'intersection list-1 list-2 args))
+  (:method ((list-1 list) (list-2 list) &rest args)
+    (apply #'cl:nintersection list-1 list-2 args)))
 
 (make-generic adjoin (item list &key key test test-not))
 
 (make-generic set-difference (list-1 list-2 &key key test test-not))
-(make-generic nset-difference (list-1 list-2 &key key test test-not))
+(make-generic nset-difference (list-1 list-2 &key key test test-not)
+  (:method (list-1 list-2 &rest args)
+    (apply #'set-difference list-1 list-2 args))
+  (:method ((list-1 list) (list-2 list) &rest args)
+    (apply #'cl:nset-difference list-1 list-2 args)))
 
 (make-generic set-exclusive-or (list-1 list-2 &key key test test-not))
-(make-generic nset-exclusive-or (list-1 list-2 &key key test test-not))
+(make-generic nset-exclusive-or (list-1 list-2 &key key test test-not)
+  (:method (list-1 list-2 &rest args)
+    (apply #'set-exclusive-or list-1 list-2 args))
+  (:method ((list-1 list) (list-2 list) &rest args)
+    (apply #'cl:nset-exclusive-or list-1 list-2 args)))
 
-(make-generic subsetp (list-1 list-2 &key key test test-not))
+(make-generic subsetp (list-1 list-2 &key key test test-not)
+  (:method (list-1 list-2 &rest args)
+    (null (apply #'set-difference
+                 list-1
+                 (apply #'intersection list-1 list-2 args)
+                 args)))
+  (:method ((list-1 list) (list-2 list) &rest args)
+    (apply #'cl:subsetp list-1 list-2 args)))
 
 (make-generic union (list-1 list-2 &key key test test-not))
-(make-generic nunion (list-1 list-2 &key key test test-not))
+(make-generic nunion (list-1 list-2 &key key test test-not)
+  (:method (list-1 list-2 &rest args)
+    (apply #'union list-1 list-2 args))
+  (:method ((list-1 list) (list-2 list) &rest args)
+    (apply #'cl:nunion list-1 list-2 args)))
