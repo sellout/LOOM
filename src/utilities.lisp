@@ -1,9 +1,9 @@
-(defpackage loom.internals
+(cl:defpackage loom.internals
   (:use #:cl)
   (:export #:defpackage #:make-generic #:define-generic-nary)
   (:shadow #:defpackage))
 
-(in-package #:loom.internals)
+(cl:in-package #:loom.internals)
 
 (defmacro defpackage
           (name (use &rest uses) (export &rest exports) &rest options)
@@ -20,7 +20,8 @@
      (use-package ',(intern (concatenate 'string "LOOM." (symbol-name name)))
                   :loom)
      (export (mapcar (lambda (sym) (find-symbol (symbol-name sym) :loom))
-                     ',exports)
+                     (append ',exports
+                             ',(cdr (find :export options :key #'car))))
              :loom)))
 
 (defmacro make-generic (fn arguments &rest options-and-methods)
