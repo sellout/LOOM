@@ -93,7 +93,7 @@
                 #:boole-nand #:boole-nor #:boole-orc1 #:boole-orc2 #:boole-set
                 #:boole-xor))
 
-(in-package #:numbers)
+(cl:in-package #:numbers)
 
 ;;; Comparison
 
