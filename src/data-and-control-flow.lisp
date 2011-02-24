@@ -38,7 +38,7 @@
            #:if
            #:or
            #:when #:unless
-           #:case #:ccase #:ecase
+           #:case #:ccase #:ecase #:otherwise
            #:typecase #:ctypecase #:etypecase
            #:multiple-value-bind
            #:multiple-value-call
@@ -71,3 +71,5 @@
            #:&aux
            #:&environment
            #:&allow-other-keys))
+
+(cl:in-package #:data-and-control-flow)
