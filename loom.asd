@@ -5,10 +5,20 @@
 
 (defsystem loom
   :description "Lisp: Object-Oriented and Modular"
-  :long-description "LOOM takes the completely standard set of CL
-  functions and makes them all generic. It also segregates them into
-  packages so you can have fewer symbols interned. It has the added
-  benefit of (possibly) making your implementation very slow."
+  :long-description "LOOM takes the completely standard set of CL functions and
+  makes them all generic. It also segregates them into packages so you can have
+  fewer symbols interned. It has the added benefit of (possibly) making your
+  implementation very slow.
+
+  The real use case for this is overriding standard symbols to work on your own
+  classes. Beyond just making things generic, I try to make it as easy as
+  possible. For example:
+
+• All “non-consing” functions fall back to their consing alternatives. So if you
+  define INTERSECTION for your type, NINTERSECTION will work (but will cons).
+• Trivial non-specialized implementations are given when possible. EG, #'>,
+  #'<=, and #'>= are defined using #'<; so you only need to define #'< to get
+  all of them."
   :author "Greg Pfeil <greg@technomadic.org>"
   :licence "LLGPL"
   :pathname "src/"
