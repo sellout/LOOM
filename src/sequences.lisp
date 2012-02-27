@@ -1,6 +1,6 @@
 (loom.internals:defpackage sequences
-  (:use #:loom.internals
-        #:cl.evaluation-and-compilation #:cl.data-and-control-flow #:cl.objects)
+  (:use #:evaluation-and-compilation #:data-and-control-flow #:objects
+        #:loom.internals)
   (:export #:sequence
            #:copy-seq
            #:elt

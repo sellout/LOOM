@@ -1,5 +1,5 @@
 (loom.internals:defpackage conditions
-  (:use #:cl.data-and-control-flow #:loom.internals)
+  (:use #:data-and-control-flow #:loom.internals)
   (:export #:condition
            #:warning
            #:style-warning
@@ -66,6 +66,7 @@
                 #:ignore-errors
                 #:define-condition
                 #:restart
+                #:compute-restarts
                 #:restart-bind
                 #:restart-case
                 #:with-condition-restarts
@@ -73,8 +74,9 @@
                 #:abort
                 #:continue
                 #:muffle-warning
-                #:store-value
-                #:use-value))
+                ;;#:store-value
+                ;;#:use-value
+                ))
 
 (in-package #:conditions)
 
@@ -96,3 +98,16 @@
 (make-generic warn (datum &rest arguments))
 
 (make-generic invoke-debugger (condition))
+
+(make-generic make-condition (type &rest slot-initializations))
+
+(make-generic find-restart (identifier &optional condition))
+
+(make-generic invoke-restart (restart &rest arguments))
+
+(make-generic invoke-restart-interactively (restart))
+
+(make-generic restart-name (restart))
+
+(make-generic store-value (value &optional condition))
+(make-generic use-value (value &optional condition))

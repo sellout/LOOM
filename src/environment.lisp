@@ -1,5 +1,5 @@
 (loom.internals:defpackage environment
-  (:use #:cl)
+  #.(loom.utilities:use-with-cl :numbers)
   (:export #:decode-universal-time
            #:encode-universal-time
            #:get-universal-time #:get-decoded-time
@@ -19,10 +19,10 @@
            #:ed
            #:inspect
            #:dribble
-           #|#:-|#
-           #|#:+|# #:++ #:+++
-           #|#:*|# #:** #:***
-           #|#:/|# #:// #:///
+           #:-
+           #:+ #:++ #:+++
+           #:* #:** #:***
+           #:/ #:// #:///
            #:lisp-implementation-type #:lisp-implementation-version
            #:short-site-name #:long-site-name
            #:machine-instance

@@ -51,37 +51,40 @@
                                            'function)
                             ""))
        ,@(cond (options-and-methods `,options-and-methods)
-              ((find '&rest arguments)
-               `((:method ,arguments
-                   (declare (ignore ,@(collect-keys arguments)))
-                   (apply #',(intern (symbol-name fn) :cl)
-                          ,@(remove-lambda-list-keywords arguments)))))
-              ((find '&key arguments)
-               (let ((new-args (add-&rest arguments)))
-                 `((:method ,new-args
-                     (declare (ignore ,@(collect-keys new-args)))
-                     (apply #',(intern (symbol-name fn) :cl)
-                            ,@(remove-lambda-list-keywords new-args))))))
-              (t
-               `((:method ,arguments
-                   (,(intern (symbol-name fn) :cl)
-                     ,@(remove-lambda-list-keywords arguments)))))))))
+               ((find '&rest arguments)
+                `((:method ,arguments
+                    (declare (ignore ,@(collect-keys arguments)))
+                    (apply #',(intern (symbol-name fn) :cl)
+                           ,@(remove-lambda-list-keywords arguments)))))
+               ((find '&key arguments)
+                (let ((new-args (add-&rest arguments)))
+                  `((:method ,new-args
+                      (declare (ignore ,@(collect-keys new-args)))
+                      (apply #',(intern (symbol-name fn) :cl)
+                             ,@(remove-lambda-list-keywords new-args))))))
+               (t
+                `((:method ,arguments
+                    (,(intern (symbol-name fn) :cl)
+                      ,@(remove-lambda-list-keywords arguments)))))))))
 
 (defmacro define-generic-nary (fn (left right &optional collective) &body body)
   "Takes an nary function and reframes it as a reduction on a binary generic
    function that can be specialized."
-  `(progn
-     (defgeneric ,(intern (concatenate 'string "BINARY-" (symbol-name fn)))
-                 (,left ,right)
-       (:documentation ,(or (documentation (intern (symbol-name fn) :cl)
-                                           'function)
-                            ""))
-       (:method (,left ,right)
-         (,(intern (symbol-name fn) :cl) ,left ,right)))
-     (defun ,(intern (symbol-name fn))
-            ,(if collective `(&rest ,collective) `(,left &rest ,right))
-       ,(or (documentation (intern (symbol-name fn) :cl) 'function) "")
-       ,@(or body
-             `((reduce #',(intern (concatenate 'string
-                                               "BINARY-" (symbol-name fn)))
-                       ,(or collective `(cons ,left ,right))))))))
+  (let ((documentation (or (documentation (intern (symbol-name fn) :cl)
+                                          'function) ""))
+        (lambda-list (if collective
+                         `(&rest ,collective)
+                         `(,left &rest ,right))))
+    `(progn
+       (defgeneric ,(intern (concatenate 'string "BINARY-" (symbol-name fn)))
+           (,left ,right)
+         (:documentation ,documentation)
+         (:method (,left ,right)
+           (,(intern (symbol-name fn) :cl) ,left ,right)))
+       (defgeneric ,(intern (symbol-name fn)) ,lambda-list
+         (:documentation ,documentation)
+         (:method ,lambda-list
+           ,@(or body
+                 `((reduce #',(intern (concatenate 'string
+                                                   "BINARY-" (symbol-name fn)))
+                           ,(or collective `(cons ,left ,right))))))))))

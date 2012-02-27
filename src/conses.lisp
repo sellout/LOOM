@@ -1,6 +1,5 @@
 (loom.internals:defpackage conses
-  (:use #:loom.internals #:loom.sequences
-        #:cl.data-and-control-flow #:cl.objects)
+  (:use #:data-and-control-flow #:objects #:sequences #:loom.internals)
   (:export #:list
            #:null
            #:cons
