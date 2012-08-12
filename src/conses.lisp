@@ -1,5 +1,5 @@
 (loom.internals:defpackage conses
-  (:use #:data-and-control-flow #:objects #:sequences #:loom.internals)
+  (:use #:cl.data-and-control-flow #:cl.objects #:cl.sequences #:loom.internals)
   (:export #:list
            #:null
            #:cons
@@ -58,7 +58,7 @@
                 #:mapc #:mapcar #:mapcan #:mapl #:maplist #:mapcon
                 #:remf #:pushnew))
 
-(cl:in-package #:conses)
+(cl:in-package #:loom.conses)
 
 ;; FIXME: can't shadow the function without shadowing the class
 ;; (make-generic cons (object-1 object-2))

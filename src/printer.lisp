@@ -32,4 +32,4 @@
            #:print-not-readable-object
            #:format))
 
-(in-package #:printer)
+(in-package #:loom.printer)

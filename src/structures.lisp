@@ -1,9 +1,9 @@
 (loom.internals:defpackage structures
-  (:use #:data-and-control-flow #:loom.internals)
+  (:use #:cl.data-and-control-flow #:loom.internals)
   (:export #:defstruct
            #:copy-structure)
   (:import-from #:cl #:defstruct))
 
-(cl:in-package #:structures)
+(cl:in-package #:loom.structures)
 
 (make-generic copy-structure (structure))

@@ -1,5 +1,5 @@
 (loom.internals:defpackage types-and-classes
-  (:use #:data-and-control-flow #:loom.internals)
+  (:use #:cl.data-and-control-flow #:loom.internals)
   (:export #:nil
            #:boolean
            #:function
@@ -60,7 +60,7 @@
                           #:not
                           #:eql))
 
-(in-package #:types-and-classes)
+(in-package #:loom.types-and-classes)
 
 (make-generic coerce (object result-type))
 

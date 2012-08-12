@@ -1,5 +1,5 @@
 (loom.internals:defpackage packages
-  (:use #:data-and-control-flow #:loom.internals)
+  (:use #:cl.data-and-control-flow #:loom.internals)
   (:export #:package
            #:export
            #:find-symbol
@@ -40,7 +40,7 @@
                 #:package-error)
   (:shadowing-import-from #:cl #:defpackage))
 
-(cl:in-package #:packages)
+(cl:in-package #:loom.packages)
 
 (make-generic export (symbols &optional package))
 (make-generic find-symbol (string &optional package))

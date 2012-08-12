@@ -1,5 +1,5 @@
 (loom.internals:defpackage strings
-  (:use #:evaluation-and-compilation #:data-and-control-flow #:sequences
+  (:use #:cl.evaluation-and-compilation #:cl.data-and-control-flow #:cl.sequences
         #:loom.internals)
   (:export #:string
            #:base-string
@@ -19,7 +19,7 @@
                 #:simple-string
                 #:simple-base-string))
 
-(cl:in-package #:strings)
+(cl:in-package #:loom.strings)
 
 (make-generic simple-string-p (object))
 

@@ -47,7 +47,7 @@
                 #:array-rank-limit
                 #:array-total-size-limit))
 
-(cl:in-package #:arrays)
+(cl:in-package #:loom.arrays)
 
 (make-generic make-array
               (dimensions

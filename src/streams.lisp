@@ -57,3 +57,5 @@
            #:stream-error
            #:stream-error-stream
            #:end-of-file))
+
+(cl:in-package #:loom.streams)

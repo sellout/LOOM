@@ -1,5 +1,5 @@
 (loom.internals:defpackage sequences
-  (:use #:evaluation-and-compilation #:data-and-control-flow #:objects
+  (:use #:cl.evaluation-and-compilation #:cl.data-and-control-flow #:cl.objects
         #:loom.internals)
   (:export #:sequence
            #:copy-seq
@@ -28,7 +28,7 @@
            #:remove-duplicates #:delete-duplicates)
   (:import-from #:cl #:sequence))
 
-(in-package #:sequences)
+(in-package #:loom.sequences)
 
 (make-generic copy-seq (sequence))
 

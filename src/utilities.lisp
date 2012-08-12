@@ -13,7 +13,6 @@
        (:use #:cl)
        (:export ,@exports))
      (cl:defpackage ,(intern (concatenate 'string "LOOM." (symbol-name name)))
-       (:nicknames ,name)
        (:use ,@uses)
        (:export ,@exports)
        ,@options)

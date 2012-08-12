@@ -1,5 +1,6 @@
 (loom.internals:defpackage characters
-  (:use #:evaluation-and-compilation #:data-and-control-flow #:objects #:conses
+  (:use #:cl.evaluation-and-compilation #:cl.data-and-control-flow #:cl.objects
+        #:cl.conses
         #:loom.internals)
   (:export #:character
            #:base-char
@@ -29,7 +30,7 @@
                 #:extended-char
                 #:char-code-limit))
 
-(cl:in-package #:characters)
+(cl:in-package #:loom.characters)
 
 (define-generic-nary char= (left right)
   (every (lambda (character) (binary-char= left character)) right))

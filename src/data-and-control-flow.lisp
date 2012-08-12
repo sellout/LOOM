@@ -125,7 +125,7 @@
   #.(cl:list* :import-from :cl
               (cl:mapcar #'cl:symbol-name lambda-list-keywords)))
 
-(cl:in-package #:data-and-control-flow)
+(cl:in-package #:loom.data-and-control-flow)
 
 (make-generic apply (function &rest args+))
 

@@ -1,5 +1,5 @@
 (loom.internals:defpackage conditions
-  (:use #:data-and-control-flow #:loom.internals)
+  (:use #:cl.data-and-control-flow #:loom.internals)
   (:export #:condition
            #:warning
            #:style-warning
@@ -78,7 +78,7 @@
                 ;;#:use-value
                 ))
 
-(in-package #:conditions)
+(cl:in-package #:loom.conditions)
 
 (make-generic cell-error-name (condition))
 

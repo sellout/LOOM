@@ -1,5 +1,5 @@
 (loom.internals:defpackage symbols
-  (:use #:data-and-control-flow #:loom.internals)
+  (:use #:cl.data-and-control-flow #:loom.internals)
   (:export #:symbol
            #:keyword
            #:symbolp
@@ -26,7 +26,7 @@
                 #:*gensym-counter*
                 #:unbound-variable))
 
-(cl:in-package #:symbols)
+(cl:in-package #:loom.symbols)
 
 (make-generic symbolp (object))
 

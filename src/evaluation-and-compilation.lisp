@@ -1,5 +1,5 @@
 (loom.internals:defpackage evaluation-and-compilation
-  (:use #:data-and-control-flow #:loom.internals)
+  (:use #:cl.data-and-control-flow #:loom.internals)
   (:export #:lambda
            #:compile
            #:eval
@@ -52,7 +52,7 @@
                 #:locally
                 #:the))
 
-(cl:in-package #:evaluation-and-compilation)
+(cl:in-package #:loom.evaluation-and-compilation)
 
 (make-generic compile (name &optional definition))
 

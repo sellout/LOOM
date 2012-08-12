@@ -1,5 +1,5 @@
 (loom.internals:defpackage objects
-  (:use #:data-and-control-flow #:loom.internals)
+  (:use #:cl.data-and-control-flow #:loom.internals)
   (:export #:function-keywords
            #:ensure-generic-function
            #:allocate-instance
@@ -74,7 +74,7 @@
                 #:class-name
                 #:unbound-slot))
 
-(cl:in-package #:objects)
+(cl:in-package #:loom.objects)
 
 (make-generic ensure-generic-function
               (function-name
