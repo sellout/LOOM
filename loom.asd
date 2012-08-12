@@ -45,7 +45,6 @@
                                    "sequences"))
                (:file "characters"
                       :depends-on ("evaluation-and-compilation"
-                                   "data-and-control-flow"
                                    "objects"
                                    "conses"))
                (:file "conses"
@@ -56,11 +55,9 @@
                                             "data-and-control-flow"))
                (:file "strings"
                       :depends-on ("evaluation-and-compilation"
-                                   "data-and-control-flow"
                                    "sequences"))
                (:file "sequences"
                       :depends-on ("evaluation-and-compilation"
-                                   "data-and-control-flow"
                                    "objects"))
                (:file "hash-tables" :depends-on ("utilities"))
                (:file "filenames" :depends-on ("utilities"))
