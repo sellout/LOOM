@@ -22,7 +22,7 @@
 • Even functions with no specializable (required) parameters are genericized, to
   make it easy to take advantage of method combinations and the MOP."
   :author "Greg Pfeil <greg@technomadic.org>"
-  :licence "LLGPL"
+  :licence "MIT"
   :pathname "src/"
   :components ((:file "package")
                (:file "resolution-packages")
