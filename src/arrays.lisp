@@ -1,5 +1,6 @@
 (loom.internals:defpackage arrays
-  (:use #:data-and-control-flow #:loom.internals)
+  (:use #:cl.data-and-control-flow
+        #:loom.internals #:loom.arrays-numbers-resolution)
   (:export #:array
            #:simple-array
            #:vector
@@ -31,8 +32,7 @@
            #:vector-pop
            #:vector-push #:vector-push-extend
            #:vectorp
-           ;; #:bit ;; FIXME: BIT is also exported by loom.numbers, so this conflicts.
-           #:sbit
+           #:bit #:sbit
            #:bit-and #:bit-andc1 #:bit-andc2 #:biteqv #:bit-ior #:bit-nand #:bit-nor #:bit-not #:bit-orc1 #:bit-orc2 #:bit-xor
            #:bit-vector-p
            #:simple-bit-vector-p)

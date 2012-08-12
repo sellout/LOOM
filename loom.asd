@@ -25,6 +25,7 @@
   :licence "LLGPL"
   :pathname "src/"
   :components ((:file "package")
+               (:file "resolution-packages")
                (:file "utilities" :depends-on ("package"))
                (:file "evaluation-and-compilation"
                       :depends-on ("data-and-control-flow"))
@@ -37,8 +38,8 @@
                (:file "symbols" :depends-on ("data-and-control-flow"))
                (:file "packages" :depends-on ("data-and-control-flow"))
                (:file "numbers"
-                      :depends-on ("evaluation-and-compilation"
-                                   "data-and-control-flow"
+                      :depends-on ("resolution-packages"
+                                   "evaluation-and-compilation"
                                    "objects"
                                    "conses"
                                    "sequences"))
@@ -51,7 +52,8 @@
                       :depends-on ("data-and-control-flow"
                                    "objects"
                                    "sequences"))
-               (:file "arrays" :depends-on ("data-and-control-flow"))
+               (:file "arrays" :depends-on ("resolution-packages"
+                                            "data-and-control-flow"))
                (:file "strings"
                       :depends-on ("evaluation-and-compilation"
                                    "data-and-control-flow"
@@ -67,7 +69,8 @@
                (:file "printer" :depends-on ("utilities"))
                (:file "reader" :depends-on ("utilities"))
                (:file "system-construction" :depends-on ("utilities"))
-               (:file "environment" :depends-on ("utilities"))))
+               (:file "environment" :depends-on ("resolution-packages"
+                                                 "evaluation-and-compilation"))))
 
 ;;; want to define this in such a way that it's easy to build the
 ;;; later pieces on the earlier

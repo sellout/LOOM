@@ -1,6 +1,7 @@
 (loom.internals:defpackage numbers
-  (:use #:evaluation-and-compilation #:data-and-control-flow
-        #:objects #:conses #:sequences #:loom.internals)
+  (:use #:cl.evaluation-and-compilation #:cl.data-and-control-flow
+        #:cl.objects #:cl.conses #:cl.sequences
+        #:loom.internals #:loom.arrays-numbers-resolution #:loom.environment-numbers-resolution)
   (:export #:number
            #:complex
            #:real
@@ -83,7 +84,6 @@
                 #:integer
                 #:signed-byte
                 #:unsigned-byte
-                #:bit
                 #:fixnum
                 #:bignum
                 #:incf #:decf
@@ -93,7 +93,9 @@
                 #:boole-nand #:boole-nor #:boole-orc1 #:boole-orc2 #:boole-set
                 #:boole-xor))
 
-(cl:in-package #:numbers)
+(cl:in-package #:loom.numbers)
+
+(define-symbol-macro bit cl:bit)
 
 ;;; Comparison
 
